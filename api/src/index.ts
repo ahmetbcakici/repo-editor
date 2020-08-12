@@ -17,14 +17,20 @@ server.get('/ping', async (req, reply) => {
     const siteBody = $('body');
     let i = 2;
     while (true) {
-      let y = siteBody
+      let item = siteBody
         .find(
           `div.Box-row:nth-child(${i}) > div:nth-child(2) > span:nth-child(1)`
         )
         .text();
-      if (!y) break;
+        
+      let isFolder = siteBody
+        .find(
+          `div.Box-row:nth-child(${i}) > div:nth-child(1) > svg:nth-child(1)`
+        )
+        .hasClass('octicon-file-directory');
+      if (!item) break;
 
-      console.log(y);
+      console.log(isFolder, item);
       i++;
     }
     /* return console.log(
